@@ -1,6 +1,6 @@
 # 📦 Dispatch and Receive Unit RFID System
 
-This project simulates a simple **Dispatch and Receive Unit** system using RFID tags and an STM32/Arduino board. The system tracks product dispatch and receipt with timestamps, logging information to the Serial Monitor.
+This project simulates a simple **Dispatch and Receive Unit** system using RFID tags and an STM32F401CCU6 board. The system tracks product dispatch and receipt with timestamps, logging information to the Serial Monitor.
 
 ## 🧪 Usage Instructions
 
