@@ -1,71 +1,58 @@
-# RFID-Based Dispatch and Receive System
+# RFID Dispatch and Receive System for STM32F401CCU6
 
-An embedded system project that uses RFID technology to timestamp the dispatch and reception of goods without relying on an RTC module. It leverages software time tracking for date and time logging, making it lightweight and cost-effective for inventory management and logistics tracking.
+This system simulates a real-time tracking application using RFID tags. It consists of two units: a **dispatch unit** and a **receive unit**, each interfacing with an MFRC522 RFID module and providing timestamps (software-based) for product dispatch and receipt events.
 
----
+# Usage Instructions
 
-## 🛠️ Hardware Components
+## Setup
+1. Connect the MFRC522 module to your STM32/Arduino board using SPI.
+2. Upload the `dispatch_code.ino` to the dispatch unit and `receive_code.ino` to the receiving unit.
+3. Open Serial Monitor at a baud rate of 9600.
 
-- **Microcontroller**: STM32F401CCU6 
-- **RFID Module**: MFRC522 (SPI Interface)
-- **Power Supply**: USB or external 5V
-- **Interface**: Serial Monitor (9600 baud)
+## Operation
+1. Scan an RFID tag.
+2. View the UID, product name, and current date-time in the Serial Monitor.
+
+⚠️ **Important:** Programming RFID tags (assigning UIDs to specific products) is not handled by this system. You must manually configure and associate RFID tags as per your requirements.  
+**Note:** Programming RFID tags? Do it as a task for yourself.
 
 
----
+## Features
+- Real-time product tracking using RFID.
+- Software-based time tracking without RTC.
+- Logs the dispatch and receive timestamps.
+- Displays product UID and associated details on the serial monitor.
 
-## 🚀 Features
+## Hardware Requirements
+- **STM32F401CCU6** microcontroller.
+- **MFRC522 RFID module** for both dispatch and receive units.
+- **Arduino IDE** or equivalent for STM32 development (via STM32CubeIDE).
+- **USB-to-Serial converter** (for Serial communication).
+- **Wires** for connecting the SPI interface.
 
-- RFID-based product identification
-- Software clock to simulate date and time
-- Real-time dispatch and receive logging
-- Unique UID-to-product mapping
-- Modular and adaptable code
+## Pinout Configuration for STM32F401CCU6
 
----
+The **STM32F401CCU6** uses SPI for communication with the MFRC522 RFID module. The following pinout is required:
 
-## 📌 How It Works
+| **MFRC522 Pin** | **STM32F401CCU6 Pin** |
+|-----------------|-----------------------|
+| **SDA (SS)**    | **PA4**               |
+| **SCK**         | **PA5**               |
+| **MOSI**        | **PA7**               |
+| **MISO**        | **PA6**               |
+| **IRQ**         | Not used in this setup |
+| **RST**         | **PB0**               |
+| **VCC**         | **3.3V**              |
+| **GND**         | **GND**               |
 
-1. **Startup**: Software clock initializes with preset time and date.
-2. **RFID Scan**: User scans a product tag using the MFRC522 module.
-3. **UID Detection**: The tag’s UID is matched with a product name.
-4. **Logging**: The system prints the product name and the timestamp of dispatch or reception.
+Ensure the MFRC522 module is powered at 3.3V (do not use 5V for MFRC522 as it can damage the module).
 
----
-
-## 🧪 Usage Instructions
-
-### Setup
-
-- Connect the MFRC522 module to your STM32/Arduino board using SPI.
-- Upload the `dispatch_code.ino` on the dispatch unit and `receive_code.ino` on the receiving unit.
-- Open Serial Monitor at `9600` baud rate.
-
-### Operation
-
-- Scan an RFID tag.
-- View UID, product name, and current date-time in Serial Monitor.
-
----
-
-## 📈 Future Improvements
-
-- Add SD card logging for offline data storage.
-- Integrate with IoT platforms for real-time tracking.
-- Replace software clock with RTC (DS3231) for higher accuracy.
-- Create a web dashboard for inventory analytics.
-
----
-
-## 📄 License
-
-MIT License.  
-You are free to use, modify, and distribute this project with credit to the author.
+## Software Setup
+1. **Install Arduino IDE** or **STM32CubeIDE** for STM32F401CCU6 development.
+2. **Install MFRC522 Library**:
+   - In Arduino IDE: Go to `Sketch` > `Include Library` > `Manage Libraries` and search for `MFRC522`. Install the latest version.
+3. **Upload Code**:
+   - Upload the **dispatch code** to the dispatch unit.
+   - Upload the **receive code** to the receiving unit.
 
 ---
-
-## 👨‍💻 Author
-
-**Krishnaelectrovoltz**  
-Electronics & Communication Engineer  
-Student | Embedded Systems Developer
